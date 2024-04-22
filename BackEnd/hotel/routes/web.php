@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\CommentController;
 use App\Http\Controllers\FacilitiesController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\RoomController;
@@ -23,6 +24,7 @@ Route::get('/', function () {
 });
 Route::get('/getfacilities', [FacilitiesController::class, 'index']);
 Route::get('/getroom', [RoomController::class, 'index']);
+Route::get('/getcomment', [CommentController::class, 'index']);
 Route::get('/post', [PostController::class, 'index']);
 Route::get('/getAllpost', [PostController::class, 'getAll']);
 Route::get('/csrf-token', [AuthController::class, 'getToken']);

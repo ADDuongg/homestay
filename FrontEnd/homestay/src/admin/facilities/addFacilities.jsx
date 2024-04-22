@@ -54,14 +54,14 @@ const AddFacilities = () => {
                                             <div className="mb-3">
                                                 <label className="form-label">Chọn cơ sở vật chất</label>
                                                 <select onChange={handleInput} name="icon" id="" className='form-control'>
-                                                <option value="<i style={{ fontSize: '20px' }} className='fa-solid fa-temperature-half fw-bold text-primary'></i>">-----Select-----</option>
-                                                    <option value="<i style={{ fontSize: '20px' }} className='fa-solid fa-temperature-half fw-bold text-primary'></i>">Điều hòa</option>
-                                                    <option value="<i style={{ fontSize: '20px' }} className='fa-solid fa-wifi fw-bold text-primary'></i>">WiFi</option>
-                                                    <option value="<i style={{ fontSize: '20px' }} className='fa-solid fa-tv fw-bold text-primary'></i>">TV</option>
-                                                    <option value="<i style={{ fontSize: '20px' }} className='fa-solid fa-bell-concierge fw-bold text-primary'></i>">Phục Vụ</option>
-                                                    <option value="<i style={{ fontSize: '20px' }} className='fa-solid fa-martini-glass-empty fw-bold text-primary'></i>">Đồ uống sẵn</option>
-                                                    <option value="<i style={{ fontSize: '20px' }} className='fa-solid fa-laptop fw-bold text-primary'></i>">Laptop</option>
-                                                    <option value="<i style={{ fontSize: '20px' }} className='fa-solid fa-vault fw-bold text-primary'></i>">Két an toàn</option>
+                                                <option value="">-----Select-----</option>
+                                                    <option value="<i style={{ fontSize: '20px' }} class='fa-solid fa-temperature-half fw-bold text-primary'></i>">Điều hòa</option>
+                                                    <option value="<i style={{ fontSize: '20px' }} class='fa-solid fa-wifi fw-bold text-primary'></i>">WiFi</option>
+                                                    <option value="<i style={{ fontSize: '20px' }} class='fa-solid fa-tv fw-bold text-primary'></i>">TV</option>
+                                                    <option value="<i style={{ fontSize: '20px' }} class='fa-solid fa-bell-concierge fw-bold text-primary'></i>">Phục Vụ</option>
+                                                    <option value="<i style={{ fontSize: '20px' }} class='fa-solid fa-martini-glass-empty fw-bold text-primary'></i>">Đồ uống sẵn</option>
+                                                    <option value="<i style={{ fontSize: '20px' }} class='fa-solid fa-laptop fw-bold text-primary'></i>">Laptop</option>
+                                                    <option value="<i style={{ fontSize: '20px' }} class='fa-solid fa-vault fw-bold text-primary'></i>">Két an toàn</option>
                                                 </select>
 
                                             </div>
