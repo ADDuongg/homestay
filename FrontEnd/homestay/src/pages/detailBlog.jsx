@@ -136,10 +136,10 @@ const DetailBlog = () => {
                                                                 <div className='mb-4 fw-bold' dangerouslySetInnerHTML={{ __html: item ? item.title : '' }} />
                                                                 <div className='d-flex'>
                                                                     <div className='me-3 d-flex'>
-                                                                        <i class="fa-regular fa-calendar-days mt-1 me-2"></i>
+                                                                        <i className="fa-regular fa-calendar-days mt-1 me-2"></i>
                                                                         <p>May 20, 2022</p>
                                                                     </div>
-                                                                    <i class="fa-solid fa-user mt-1 me-2"></i>
+                                                                    <i className="fa-solid fa-user mt-1 me-2"></i>
                                                                     <p>Admin</p>
                                                                 </div>
                                                             </div>

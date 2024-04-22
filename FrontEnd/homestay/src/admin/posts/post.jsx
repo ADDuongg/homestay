@@ -112,8 +112,11 @@ const Post = () => {
                                         Loading...
                                     </div>
                                 ) : (
-                                    <>
-                                        <table className="table mt-3 w-100 mx-auto">
+
+                                    <div style={{overflowX: 'auto'}}>
+                                        <table className="table mt-3 w-100 mx-auto" style={{
+                                             minWidth: '1131px', width: '100%'
+                                        }}>
                                             <thead>
                                                 <tr>
                                                     <th scope="col">#</th>
@@ -193,7 +196,9 @@ const Post = () => {
 
                                             </tbody>
                                         </table>
-                                        <div className='w-100 d-flex justify-content-end'>
+                                        <div className='w-100 d-flex justify-content-end' style={{
+                                             minWidth: '1131px', width: '100%'
+                                        }}>
                                             <ReactPaginate
                                                 previousLabel={'previous'}
                                                 nextLabel={'next'}
@@ -213,7 +218,9 @@ const Post = () => {
                                                 activeClassName='active'
                                             />
                                         </div>
-                                    </>
+                                    </div>
+
+
 
                                 )}
                             </div>
@@ -221,8 +228,8 @@ const Post = () => {
                     </div>
                 </section>
 
-            </div>
-        </Master>
+            </div >
+        </Master >
     );
 };
 

@@ -1,21 +1,37 @@
 import React from 'react';
 import Header from '../component/header';
 import Footer from '../component/footer';
-import ContactComponent from '../component/contact';
-import Cookies from 'js-cookie';
-import { Navigate } from 'react-router-dom';
-import { useEffect, useState } from 'react';
-import http from '../Axios';
+import swal from 'sweetalert';
+import { useState } from 'react';
 const Contact = () => {
+    const [formData, setFormData] = useState({
+        firstName: '',
+        lastName: '',
+        email: '',
+        subject: '',
+        message: ''
+    });
 
+    const handleInputChange = (e) => {
+        const { name, value } = e.target;
+        setFormData(prevState => ({
+            ...prevState,
+            [name]: value
+        }));
+    };
 
-    useEffect(() => {
-        http.get('/csrf-token')
-            .then(res => {
-                console.log(res.data);
-            })
-    })
+    const handleSubmit = (e) => {
+        e.preventDefault();
 
+        swal('Success', 'Your message has been sent!', 'success');
+        setFormData({
+            firstName: '',
+            lastName: '',
+            email: '',
+            subject: '',
+            message: ''
+        });
+    };
 
 
     return (
@@ -60,21 +76,21 @@ const Contact = () => {
                             </div>
                         </div>
                     </div>
-                    <form action="" className='formContact text-start pt-5 w-50 mx-auto'>
+                    <form onSubmit={handleSubmit} className='formContact text-start pt-5 w-50 mx-auto'>
                         <p style={{ fontSize: '50px', fontWeight: '400' }}>Send a Message</p>
                         <p className='w-75'>Volutpat eu mauris, arcu, consectetur nulla massa interdum interdum ornare senectus adipiscing eget nibh aliquam.</p>
 
                         <label htmlFor="" className='d-flex' style={{ fontWeight: '500' }}>Name <div className='text-danger'>*</div></label>
                         <div className='d-flex mb-3'>
-                            <input type="text" className='w-50 me-3 form-control inputContact ' name='firstName' required placeholder='First name' />
-                            <input type="text" className='w-50 form-control inputContact' name='lastName' required placeholder='Last name' />
+                            <input value={formData.firstName} onChange={handleInputChange} type="text" className='w-50 me-3 form-control inputContact ' name='firstName' required placeholder='First name' />
+                            <input value={formData.lastName} onChange={handleInputChange} type="text" className='w-50 form-control inputContact' name='lastName' required placeholder='Last name' />
                         </div>
                         <label htmlFor="" className='d-flex ' style={{ fontWeight: '500' }}>Email <div className='text-danger'>*</div></label>
-                        <input type="text" className='form-control mb-3 inputContact' name='firstName' required placeholder='Email' />
+                        <input value={formData.email} onChange={handleInputChange} type="text" className='form-control mb-3 inputContact' name='email' required placeholder='Email' />
                         <label htmlFor="" className='d-flex ' style={{ fontWeight: '500' }}>Subject <div className='text-danger'>*</div></label>
-                        <input type="text" className='form-control mb-3 inputContact' name='firstName' required placeholder='Subject' />
+                        <input value={formData.subject} onChange={handleInputChange} type="text" className='form-control mb-3 inputContact' name='subject' required placeholder='Subject' />
                         <label htmlFor="" className='d-flex ' style={{ fontWeight: '500' }}>Comment or Message <div className='text-danger'>*</div></label>
-                        <div type="text" className='form-control mb-3 inputContactBig' name='firstName' required contentEditable='true' ></div>
+                        <textarea  value={formData.message} onChange={handleInputChange} type="text" className='form-control mb-3 inputContactBig' name='message' required  ></textarea>
                         <button className='btnsend'>Send Message</button>
                     </form>
                 </section>

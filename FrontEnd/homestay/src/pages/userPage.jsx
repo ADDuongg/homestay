@@ -13,7 +13,7 @@ const UserPage = () => {
     const oldpass = useRef()
     var user_login = Cookies.get('user');
     var userJSON = JSON.stringify(user)
-    var current_user = JSON.parse(user_login);
+    var current_user = user_login?JSON.parse(user_login): {};
     useEffect(() => {
         http.get(`/api/user/${current_user.id}`)
             .then(res => {

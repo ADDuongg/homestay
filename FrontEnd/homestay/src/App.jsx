@@ -14,38 +14,55 @@ import { useEffect, useState } from 'react';
 function App() {
   const [room, setRoom] = useState([]);
   const [blog, setBlog] = useState([]);
-  
+  const [comment, setComment] = useState([]);
   useEffect(() => {
     async function getRoom() {
-      await http.get('/getroom')
-        .then(res => {
-          setRoom(res.data.rooms.data);
-          
-        })
+      try {
+        const response = await http.get('/getroom');
+
+        setRoom(response.data.rooms.data);
+      } catch (error) {
+        console.error('Error fetching room data:', error);
+      }
     }
+    async function getComment() {
+      try {
+        const response = await http.get('/getcomment');
+
+        setComment(response.data.comment_blog.data);
+      } catch (error) {
+        console.error('Error fetching room data:', error);
+      }
+    }
+
     async function getBlog() {
-      await http.get('/post')
-        .then(res => {
-          setBlog(res.data.posts.data);
-          
-        })
+      try {
+        const response = await http.get('/post');
+
+        setBlog(response.data.posts.data);
+      } catch (error) {
+        console.error('Error fetching blog data:', error);
+      }
     }
+
 
     getRoom()
     getBlog()
+    getComment()
   }, [])
-  function handleBlog(id){
+  function handleBlog(id) {
     window.location.href = `/detailBlog/${id}`
   }
-  function handleRoom(id){
+  function handleRoom(id) {
     window.location.href = `/detailRoom/${id}`
   }
-  function handleAllRoom(){
+  function handleAllRoom() {
     window.location.href = `/room`
   }
-  function handleRoomShow(){
+  function handleRoomShow() {
     window.location.href = `#emptyroom`
   }
+  console.log(comment);
   return (
     <div className="App ">
       <Header />
@@ -128,7 +145,7 @@ function App() {
               <button onClick={handleAllRoom} className='btnSeeAllRoom'>See All</button>
             </div>
             <div className="row mt-2 g-5">
-              {room.map((item, index) => {
+              {room?.map((item, index) => {
                 return (
                   <div key={index} className="col-12 col-md-6 col-lg-4 position-relative">
                     <div className="card border-0 rounded" style={{ width: '100%', height: '23rem' }}>
@@ -142,9 +159,9 @@ function App() {
                       <p>Số người thuê tối đã: {item.max_number_people}</p>
                       <div className='d-flex align-item-center'>
                         <div>loại phòng: </div>
-                        {item.type_room === '1' ? (<div className='d-flex align-items-center ms-3 text-danger fw-bold'>Phòng vip <i class="fa-solid fa-crown ms-3 text-warning"></i></div>) : (<div className='ms-3 text-primary'>Phòng thường</div>)}
+                        {item.type_room === '1' ? (<div className='d-flex align-items-center ms-3 text-danger fw-bold'>Phòng vip <i className="fa-solid fa-crown ms-3 text-warning"></i></div>) : (<div className='ms-3 text-primary'>Phòng thường</div>)}
                       </div>
-                      <button onClick={()=>handleRoom(item.id)} className='btn btn-warning text-white mt-3'>Chi tiết</button>
+                      <button onClick={() => handleRoom(item.id)} className='btn btn-warning text-white mt-3'>Chi tiết</button>
                     </div>
                   </div>
                 )
@@ -218,63 +235,38 @@ function App() {
             <p className='textComment text-center'>Danh sách</p>
             <p className='fw-bold text-center' style={{ fontSize: '40px' }}>Bình luận nổi bật</p>
             <div className="row mx-5 g-4">
-              <div className="col-md-4">
-                <div className="cardComment d-flex flex-column rounded bg-white" style={{ height: '15rem', width: '100%' }}>
-                  <div className="commentDetail text-dark px-4 pt-4" style={{ flex: '7' }}>Phòng đẹp, 5*</div>
-                  <div className="userDetail d-flex  px-4 py-2" style={{ flex: '3' }}>
+              {comment?.map((item, index) => (
+                <div className="col-md-4">
+                  <div className="cardComment d-flex flex-column rounded bg-white" style={{ height: '15rem', width: '100%' }}>
+                    <div className="commentDetail text-dark px-4 pt-4" style={{ flex: '7' }}>{item.content}</div>
+                    <div className="userDetail d-flex  px-4 py-2" style={{ flex: '3' }}>
 
-                    <img src="images/avatar.png" alt="" className='avatar me-4' />
+                      <img src={process.env.REACT_APP_API_BASE_URL + `/${item.avatar}`} alt="" className='avatar me-4' />
 
-                    <div className="detail">
-                      <p className='fw-bold' style={{ color: 'black' }}>Nguyễn Văn Dương</p>
-                      <p className='fw-bold' style={{ color: 'orange' }}>Thành viên</p>
+                      <div className="detail">
+                        <p className='fw-bold' style={{ color: 'black' }}>{item.fullname}</p>
+                        <p className='fw-bold' style={{ color: 'orange' }}>Thành viên</p>
+                      </div>
                     </div>
                   </div>
                 </div>
-              </div>
-              <div className="col-md-4">
-                <div className="cardComment d-flex flex-column rounded bg-white" style={{ height: '15rem', width: '100%' }}>
-                  <div className="commentDetail text-dark px-4 pt-4" style={{ flex: '7' }}>Phòng đẹp, 5*</div>
-                  <div className="userDetail d-flex  px-4 py-2" style={{ flex: '3' }}>
+              ))}
 
-                    <img src="images/avatar.png" alt="" className='avatar me-4' />
-
-                    <div className="detail">
-                      <p className='fw-bold' style={{ color: 'black' }}>Nguyễn Văn Dương</p>
-                      <p className='fw-bold' style={{ color: 'orange' }}>Thành viên</p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div className="col-md-4">
-                <div className="cardComment d-flex flex-column rounded bg-white" style={{ height: '15rem', width: '100%' }}>
-                  <div className="commentDetail text-dark px-4 pt-4" style={{ flex: '7' }}>Phòng đẹp, 5*</div>
-                  <div className="userDetail d-flex  px-4 py-2" style={{ flex: '3' }}>
-
-                    <img src="images/avatar.png" alt="" className='avatar me-4' />
-
-                    <div className="detail">
-                      <p className='fw-bold' style={{ color: 'black' }}>Nguyễn Văn Dương</p>
-                      <p className='fw-bold' style={{ color: 'orange' }}>Thành viên</p>
-                    </div>
-                  </div>
-                </div>
-              </div>
             </div>
           </div>
           <div className='h-100 w-100 bgcomment' ></div>
         </section>
 
-        {<section className='blog pt-5'>
+        <section className='blog pt-5'>
           <div className="container ">
             <div className='text-center w-100'>
               <p className='listLocation'>Danh sách </p>
               <h2>Bài đăng gần đây</h2>
             </div>
             <div className="row mt-5 g-5">
-              {blog.map((item, index) => {
+              {blog?.map((item, index) => {
                 return (
-                  <div className="col-12 col-md-6 col-lg-4 position-relative mb-5">
+                  <div key={index} className="col-12 col-md-6 col-lg-4 position-relative mb-5">
                     <div className="card border-0 rounded" style={{ width: '100%', height: '23rem' }}>
                       <div className="room h-100 w-100">
                         <img src={process.env.REACT_APP_IMAGE_PATH + `/${item.image_path}`} className="card-img-top h-75 " alt="..." />
@@ -291,7 +283,7 @@ function App() {
 
             </div>
           </div>
-        </section>}
+        </section>
 
         <Contact />
 

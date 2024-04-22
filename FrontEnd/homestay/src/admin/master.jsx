@@ -39,11 +39,13 @@ const Master = ({ children }) => {
 
     return (
         <AdminContext.Provider value={contextValue}>
-            <div className="d-flex h-100 w-100">
+            <div className="d-flex " >
                 <SidebarAdmin />
-                <div className="content px-0 pt-0" style={{ backgroundColor: '#EBEBF1', width: '100%', flex: '7' }}>
+                <div className="content px-0 pt-0" style={{ backgroundColor: '#EBEBF1' }}>
                     <HeaderAdmin />
-                    {children}
+                    <div className="detailContent">
+                        {children}
+                    </div>
                 </div>
             </div>
         </AdminContext.Provider>

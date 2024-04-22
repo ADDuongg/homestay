@@ -5,7 +5,7 @@ import HotelInfomation from '../component/hotelinfomation';
 import ContactComponent from '../component/contact';
 
 const Facilities = () => {
-   
+
     return (
         <div>
             <Header />
@@ -20,8 +20,8 @@ const Facilities = () => {
                     <div className='h-100 w-100 bgFacilities' ></div>
                 </section>
                 <section className='facilities text-center py-5'>
-                    <p className='w-50 mx-auto pt-5' style={{ fontSize: '50px', fontWeight: '400px' }}>Facilities to Enhance <div>Your Stay</div></p>
-                    <p className='w-50 mx-auto' style={{ fontSize: '20px' }}>Amet, est laoreet mollis ligula luctus nibh bibendum convallis elementum semper scelerisque risus tellus sed gravida.</p>
+                    <div className='w-50 mx-auto pt-5' style={{ fontSize: '50px', fontWeight: '400px' }}>Facilities to Enhance <div>Your Stay</div></div>
+                    <div className='w-50 mx-auto' style={{ fontSize: '20px' }}>Amet, est laoreet mollis ligula luctus nibh bibendum convallis elementum semper scelerisque risus tellus sed gravida.</div>
                     <div className="container  pt-5">
                         <div className="row pt-5 g-4">
                             <div className="col-sm-4 mb-5">
@@ -73,10 +73,10 @@ const Facilities = () => {
                     </div>
                 </section>
 
-                <HotelInfomation/>
-                <ContactComponent/>
+                <HotelInfomation />
+                <ContactComponent />
             </main>
-            <Footer/>
+            <Footer />
         </div>
     );
 }

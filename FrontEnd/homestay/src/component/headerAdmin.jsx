@@ -3,15 +3,15 @@ import { AdminContext } from '../contextAPI';
 import { Link } from 'react-router-dom';
 
 const HeaderAdmin = () => {
-   
-    const {showSidebar, handleLogout} = useContext(AdminContext)
+
+    const { showSidebar, handleLogout } = useContext(AdminContext)
     return (
         <div>
             <div className="w-100">
-                <nav className="navbar navbar-expand-sm bg-body-tertiary shadow">
+                <div className="navbar navbar-expand-sm bg-body-tertiary shadow">
                     <div className="container-fluid">
-                        <button onClick={showSidebar} className='btn'>
-                            <span><i className="fa-solid fa-bars"></i></span>
+                        <button className="btn btnsidebar" type="button" data-bs-toggle="offcanvas" href="#offcanvasExample" >
+                            <i className="fa-solid fa-bars"></i>
                         </button>
 
                         <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -38,7 +38,7 @@ const HeaderAdmin = () => {
                             </ul>
                         </div>
                     </div>
-                </nav>
+                </div>
             </div>
         </div>
     );

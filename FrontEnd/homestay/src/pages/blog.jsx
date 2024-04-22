@@ -37,7 +37,7 @@ const Blog = () => {
             })
 
     } */
-
+    console.log(blog);
     const handleClickOutside = (e) => {
         if (!inputSearch.current.contains(e.target) && !searchResultRef.current.contains(e.target)) {
             setShow(false);

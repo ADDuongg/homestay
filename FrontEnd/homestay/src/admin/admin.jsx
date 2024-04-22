@@ -49,7 +49,7 @@ const Admin = () => {
         <Master>
             <div>
                 <div className="section mt-5 ">
-                    <div className="divAboutAdmin container">
+                    <div className="divAboutAdmin container" >
                         <div className="row g-5  justify-content-center">
                             <div className="col-lg-4 col-md-6 shadow d-flex px-4 ms-3 divUser" style={{ height: '8rem', width: '18rem', borderRadius: '15px' }}>
                                 <div className='d-flex align-items-center' style={{ flex: 2 }}>

@@ -49,14 +49,26 @@ const FacilitiesAdmin = () => {
         http.delete(`/api/facilities/${id}`)
             .then(res => {
                 if (res.data.status === 200) {
-                    swal('Thông bóa', 'Xóa cơ sở vật chất thành công', 'success')
+                    swal('Thông báo', 'Xóa cơ sở vật chất thành công', 'success')
                         .then(() => {
-                            window.location.reload()
-                        })
+                            // Lấy lại danh sách cơ sở vật chất sau khi xóa
+                            http.get('/api/facilities')
+                                .then((res) => {
+                                    setFacilities(res.data.facilities.data);
+                                    setPerPage(res.data.facilities.last_page);
+                                    /* console.log(res.data.facilities); */
+                                })
+                                .catch((error) => {
+                                    console.error('Error fetching facilities:', error);
+                                });
+                        });
                 }
             })
-
+            .catch(error => {
+                console.error('Error deleting facility:', error);
+            });
     }
+
     async function handlePageClick(data) {
         var name = searchValue.name;
         var page = data.selected + 1
@@ -109,24 +121,25 @@ const FacilitiesAdmin = () => {
                                         <table className="table mt-3 w-100 mx-auto">
                                             <thead>
                                                 <tr>
-                                                    <th scope="col">#</th>
-                                                    <th scope="col">Name</th>
-                                                    <th scope="col">Icon</th>
-                                                    <th scope="col">Action</th>
+                                                    <th >#</th>
+                                                    <th >Name</th>
+                                                    <th >Icon</th>
+                                                    <th >Action</th>
                                                 </tr>
                                             </thead>
                                             <tbody className='table-group-divider'>
                                                 {facilities.map((item, index) => (
                                                     <React.Fragment key={index}>
                                                         <tr >
-                                                            <th scope="row">{item.id}</th>
-                                                            <th scope="row">{item.name}</th>
-                                                            {item.icon}
-                                                            <td className='' style={{ fontSize: '20px' }} dangerouslySetInnerHTML={{ __html: item.icon }} />
+                                                            <td>{item.id}</td>
+                                                            <td>{item.name}</td>
+
+                                                            <td style={{ fontSize: '20px' }}>
+                                                                <div dangerouslySetInnerHTML={{ __html: item.icon }}></div>
+                                                            </td>
 
                                                             <td>
                                                                 <div className='w-100 d-flex align-items-center justify-content-center'>
-                                                                    <i data-bs-toggle="modal" data-bs-target={'#exampleModal' + item.id} className="fa-solid fa-eye text-primary me-3" style={{ fontSize: '20px', cursor: 'pointer' }}></i>
                                                                     <div className="dropdown">
                                                                         <button className="btn btn-success dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
                                                                             Action

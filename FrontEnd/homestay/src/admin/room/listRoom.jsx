@@ -175,7 +175,9 @@ const ListRoom = () => {
                                     </div>
                                 ) : (
                                     <div className='container px-0 w-100' style={{ overflowX: 'auto' }}>
-                                        <table className="table mt-3">
+                                        <table className="table mt-3" style={{
+                                             minWidth: '1131px', width: '100%'
+                                        }}>
                                             <thead>
                                                 <tr>
                                                     <th scope="col">Name</th>
@@ -277,7 +279,9 @@ const ListRoom = () => {
 
                                             </tbody>
                                         </table>
-                                        <div className='w-100 d-flex justify-content-end'>
+                                        <div className='w-100 d-flex justify-content-end' style={{
+                                             minWidth: '1131px', width: '100%'
+                                        }}>
                                             <ReactPaginate
                                                 previousLabel={'previous'}
                                                 nextLabel={'next'}

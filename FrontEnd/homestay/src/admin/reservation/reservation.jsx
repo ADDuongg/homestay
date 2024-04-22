@@ -167,7 +167,7 @@ const Reservation = () => {
                                     </div>
                                     <div className='row  w-100'>
                                         <div className="col-12 text-end p-0">
-                                            <Link to={'/addRoom'} className='btn btn-primary col-lg-1 col-12 col-md-5 px-0 w-auto px-3' style={{}}><i className="fa-solid fa-plus me-2"></i>Add new</Link>
+                                            {/* <Link to={'/addRoom'} className='btn btn-primary col-lg-1 col-12 col-md-5 px-0 w-auto px-3' style={{}}><i className="fa-solid fa-plus me-2"></i>Add new</Link> */}
                                         </div>
                                     </div>
                                 </div>
@@ -176,8 +176,10 @@ const Reservation = () => {
                                         Loading...
                                     </div>
                                 ) : (
-                                    <>
-                                        <table className="table mt-3 table-striped">
+                                    <div style={{overflow: 'auto'}}>
+                                        <table className="table mt-3 table-striped" style={{
+                                             minWidth: '1131px', width: '100%'
+                                        }}>
                                             <thead>
                                                 <tr>
                                                     <th scope="col">#</th>
@@ -237,7 +239,9 @@ const Reservation = () => {
                                                 ))}
                                             </tbody>
                                         </table>
-                                        <div className='w-100 d-flex justify-content-end'>
+                                        <div className='w-100 d-flex justify-content-end' style={{
+                                             minWidth: '1131px', width: '100%'
+                                        }}>
                                             <ReactPaginate
                                                 previousLabel={'previous'}
                                                 nextLabel={'next'}
@@ -257,7 +261,7 @@ const Reservation = () => {
                                                 activeClassName='active'
                                             />
                                         </div>
-                                    </>
+                                    </div>
                                 )}
 
 

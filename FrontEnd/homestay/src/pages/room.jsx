@@ -30,6 +30,7 @@ const Room = () => {
         getRoom()
 
     }, [])
+    console.log(process.env.REACT_APP_IMAGE_PATH);
     async function handlePageClick(data) {
         var page = data.selected + 1
         await http.get(`/getroom?page=${page}&type_room=${searchValue.type_room}&max_number_people=${searchValue.max_number_people}&rent_cost=${searchValue.rent_cost}&status=${searchValue.status}`)

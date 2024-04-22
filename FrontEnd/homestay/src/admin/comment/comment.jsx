@@ -13,7 +13,6 @@ const Comment = () => {
         content: '',
 
     })
-    /* const [facilities, setFacilities] = useState([]) */
 
     const [loading, setLoading] = useState(false)
     const [perPage, setPerPage] = useState(5)
@@ -64,13 +63,15 @@ const Comment = () => {
         http.delete(`/api/commentBlog/${id}`)
             .then(res => {
                 if (res.data.status === 200) {
-                    swal('Thông bóa', 'Xóa bình luận thành công', 'success')
+                    swal('Thông báo', 'Xóa bình luận thành công', 'success')
                         .then(() => {
-                            window.location.reload()
+                           
+                            setComment(prevComment => prevComment.filter(item => item.id !== id));
                         })
                 }
             })
     }
+    
     
 
     return (
@@ -134,7 +135,9 @@ const Comment = () => {
                                     </div>
                                 ) : (
                                     <div className='container px-0 w-100' style={{ overflowX: 'auto' }}>
-                                        <table className="table mt-3">
+                                        <table className="table mt-3" style={{
+                                             minWidth: '1131px', width: '100%'
+                                        }}>
                                             <thead>
                                                 <tr>
                                                     <th >#</th>
@@ -146,7 +149,7 @@ const Comment = () => {
                                                 </tr>
                                             </thead>
                                             <tbody className='table-group-divider'>
-                                                {comment.length === 0 ? (<h3>Không có thông tin phòng</h3>) : comment.map((item, index) => (
+                                                {comment.length === 0 ? (<h3>Không có bình luận</h3>) : comment.map((item, index) => (
                                                     <React.Fragment key={index}>
                                                         <tr>
                                                             <td >{item.id}</td>
@@ -225,7 +228,9 @@ const Comment = () => {
 
                                             </tbody>
                                         </table>
-                                        <div className='w-100 d-flex justify-content-end'>
+                                        <div className='w-100 d-flex justify-content-end' style={{
+                                             minWidth: '1131px', width: '100%'
+                                        }}>
                                             <ReactPaginate
                                                 previousLabel={'previous'}
                                                 nextLabel={'next'}
